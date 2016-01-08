@@ -9,43 +9,37 @@ console.log('The user\'s name is ' + userName);
 alert('Okay ' + userName + ', I hope you are here to learn about me. If not... forget it let\'s begin!');
 
 var firstTry = 0;
+var questData = [['Do I want to go into the game industry? Yes or No',
+	'Y',
+	'YES',
+	'Right! My end goal is to go into game development!',
+	'Nope.',
+	res1],
+	['Do I have any siblings? Yes or No',
+	'Y',
+	'YES',
+	'Right, three brothers.',
+	'Nope',
+	res2],
+	['Yes or No? Yes is the answer',
+	'Y',
+	'YES',
+	'Right, it would be hard to mess that one up.',
+	'Come on, man...',
+	res3]];
 
-qOne();
-qTwo();
-qThree();
-qFour();
-
-
-function qOne() {
-	var questionOne = prompt('Do I want to go into the game industry? Yes or No');
-	if ((questionOne.toUpperCase() === "Y") || (questionOne.toUpperCase() === "YES")) {
+function askQuestion() {
+	var questionOne = prompt(questData[i][0]);
+	if ((questionOne.toUpperCase() === questData[i][1]) || (questionOne.toUpperCase() === questData[i][2])) {
+		//right answer
 		firstTry++;
 		console.log(firstTry);
-		res1.textContent = 'Right!  My end goal is to go into game development!';
+		questData[i][5].textContent = questData[i][3];
+		questData[i][5].className = 'right'
 	} else {
-		res1.textContent = 'nope';
-	}
-}
-
-function qTwo() {
-	var questionTwo = prompt('Do i have any siblings? Yes or No');
-	if ((questionTwo.toUpperCase() === 'Y') || (questionTwo.toUpperCase() === 'YES')) {``
-		firstTry++;
-		console.log(firstTry);
-		res2.textContent = 'Right, three brothers.';
-	} else {
-		res2.textContent = 'nope!';
-	}
-}
-
-function qThree() {
-	var questionThree =  prompt('Yes or No ? (yes is the answer)');
-	if ((questionThree.toUpperCase() === 'Y') || (questionThree.toUpperCase() === 'YES')) {
-		res3.textContent = 'Right, it would be hard to mess that one up';
-		firstTry++;
-		console.log(firstTry);
-	} else {
-		res3.textContent = 'Come on man...';
+		//wrong answer
+		questData[i][5].textContent = questData[i][4];
+		questData[i][5].className = 'wrong'
 	}
 }
 
@@ -61,6 +55,12 @@ function qFour() {
 		res4.textContent = 'Nope, too high';
 	}
 }
-	alert('I know you are happy you know more about me \n see ya later!');
 
-	alert(firstTry + ' correct Answers');
+for (var i = 0; i < questData.length; i++) {
+	askQuestion();
+}
+qFour();
+
+alert('I know you are happy you know more about me \n see ya later!');
+
+alert(firstTry + ' correct Answers');
